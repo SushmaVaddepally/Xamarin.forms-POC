@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fresh:FreshBaseContentPage
+    xmlns:fresh="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GamesZone.Pages.GameDetailPage"
+    xmlns:converters="clr-namespace:GamesZone.Converters"
+    Title="Game Details">
+<ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToStatusConverter x:Key="BoolToStatusConverter"/>
+            <converters:BoolToYesNoConverter x:Key="BoolToYesNoConverter"/>
+            <converters:NullToHiphenConverter x:Key="NullToHiphenConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+<ContentPage.Content>
+        <ContentView>
+            <ScrollView>
+                <StackLayout>
+                    <Grid Padding="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Game Id:" />
+                            <Label Text="{Binding Game.game_id}" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                            <Label Text="Start Date:" />
+                            <Label Text="{Binding Game.date_start}" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Game No:" />
+                            <Label Text="{Binding Game.game_number}" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                            <Label Text="Week:" />
+                            <Label Text="{Binding Game.week}" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                            <Label Text="Season:" />
+                            <Label Text="{Binding Game.season}" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                            <Label Text="Attendance:" />
+                            <Label Text="{Binding Game.attendance}" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <Label Text="Game Duration:" />
+                            <Label Text="{Binding Game.game_duration, Converter={StaticResource NullToHiphenConverter}}" />
+                        </StackLayout>
+
+                        <!--<Label Text="{Binding Game.event_type.name}" />-->
+                    </Grid>
+                    <Frame CornerRadius="3" Margin="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label Text="Event:" FontAttributes="Bold" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Event Id:" />
+                                <Label Text="{Binding Game.event_type.event_type_id}" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Name:" />
+                                <Label Text="{Binding Game.event_type.name}" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label Text="Title:" />
+                                <Label Text="{Binding Game.event_type.title, Converter={StaticResource NullToHiphenConverter}}" />
+                            </StackLayout>
+
+                        </Grid>
+                    </Frame>
+                    <Frame CornerRadius="3" Margin="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label Text="Event Status:" FontAttributes="Bold" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Event Status Id:" />
+                                <Label Text="{Binding Game.event_status.event_status_id}" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Name:" />
+                                <Label Text="{Binding Game.event_status.name}" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label Text="Status:" />
+                                <Label Text="{Binding Game.event_status.is_active,Converter={StaticResource BoolToStatusConverter}}" />
+                            </StackLayout>
+
+                            <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label Text="Quarter: " />
+                                <Label Text="{Binding Game.event_status.quarter}" />
+                                <Label Text=" : " />
+                                <Label Text="{Binding Game.event_status.minutes}" />
+                                <Label Text="min" />
+                                <Label Text=" : " />
+                                <Label Text="{Binding Game.event_status.seconds}" />
+                                <Label Text="sec" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Down:" />
+                                <Label Text="{Binding Game.event_status.down}" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Yard to go:" />
+                                <Label Text="{Binding Game.event_status.yards_to_go}" />
+                            </StackLayout>
+
+                        </Grid>
+                    </Frame>
+                    <Frame CornerRadius="3" Margin="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label Text="Venue:" FontAttributes="Bold" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Venue Id:" />
+                                <Label Text="{Binding Game.venue.venue_id}" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Name:" />
+                                <Label Text="{Binding Game.venue.name}" LineBreakMode="NoWrap"/>
+                            </StackLayout>
+
+                        </Grid>
+                    </Frame>
+                    
+                    <Frame CornerRadius="3" Margin="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label Text="Team 1:" FontAttributes="Bold" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Team Id:" />
+                                <Label Text="{Binding Game.team_1.team_id}" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Location:" />
+                                <Label Text="{Binding Game.team_1.location}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Nick name:" />
+                                <Label Text="{Binding Game.team_1.nickname, Converter={StaticResource NullToHiphenConverter}}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Abbreviation:" />
+                                <Label Text="{Binding Game.team_1.abbreviation}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Score:" />
+                                <Label Text="{Binding Game.team_1.score}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Venue Id:" />
+                                <Label Text="{Binding Game.team_1.venue_id}"/>
+                            </StackLayout>
+                            <ListView VerticalScrollBarVisibility="Never" RowHeight="20" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" SeparatorVisibility="None" ItemsSource="{Binding Game.team_1.linescores}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text ="Quarter: " />
+                                                <Label Text="{Binding quarter}" />
+                                            </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text ="Score: " />
+                                                    <Label Text="{Binding score}" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <StackLayout Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="At home:" />
+                                <Label Text="{Binding Game.team_1.is_at_home, Converter={StaticResource BoolToYesNoConverter}}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Winner:" />
+                                <Label Text="{Binding Game.team_1.is_winner, Converter={StaticResource BoolToYesNoConverter}}"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <Frame CornerRadius="3" Margin="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label Text="Team 2:" FontAttributes="Bold" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Team Id:" />
+                                <Label Text="{Binding Game.team_2.team_id}" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Location:" />
+                                <Label Text="{Binding Game.team_2.location}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Nick name:" />
+                                <Label Text="{Binding Game.team_2.nickname, Converter={StaticResource NullToHiphenConverter}}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Abbreviation:" />
+                                <Label Text="{Binding Game.team_2.abbreviation}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="Score:" />
+                                <Label Text="{Binding Game.team_2.score}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Venue Id:" />
+                                <Label Text="{Binding Game.team_2.venue_id}"/>
+                            </StackLayout>
+                            <ListView VerticalScrollBarVisibility="Never" RowHeight="20" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" SeparatorVisibility="None" ItemsSource="{Binding Game.team_2.linescores}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text ="Quarter: " />
+                                                    <Label Text="{Binding quarter}" />
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text ="Score: " />
+                                                    <Label Text="{Binding score}" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <StackLayout Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
+                                <Label Text="At home:" />
+                                <Label Text="{Binding Game.team_2.is_at_home, Converter={StaticResource BoolToYesNoConverter}}"/>
+                            </StackLayout>
+                            <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                                <Label Text="Winner:" />
+                                <Label Text="{Binding Game.team_2.is_winner, Converter={StaticResource BoolToYesNoConverter}}"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <Button CornerRadius="3" Margin="5" Text="Buy Tickets" Command="{Binding BuyTicketsCommand}" BackgroundColor="YellowGreen" />
+
+                </StackLayout>
+            </ScrollView>
+        </ContentView>
+    </ContentPage.Content>
+</fresh:FreshBaseContentPage>

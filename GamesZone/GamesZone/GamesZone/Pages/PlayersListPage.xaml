@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fresh:FreshBaseContentPage
+    xmlns:fresh="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:FlowListView="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"  
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:GamesZone.CommonControls"
+    xmlns:converters="clr-namespace:GamesZone.Converters"
+    Title="Players List"
+    x:Class="GamesZone.Pages.PlayersListPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NullToImageConverter x:Key="NullToImageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <controls:SearchControl SearchCommand="{Binding SearchCommand}" PlaceholderText="Search..."  Text="{Binding Filter, Mode=TwoWay}" />
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+        <FlowListView:FlowListView FlowColumnCount="2"   
+                SeparatorVisibility="Default"   
+                HasUnevenRows="True"    
+                FlowItemsSource="{Binding PlayersList}" >
+
+            <FlowListView:FlowListView.FlowColumnTemplate>
+                <DataTemplate>
+                    <StackLayout Margin="5" BackgroundColor="#F9F9F9" >
+                        <ff:CachedImage Source="{Binding image_url, Converter={StaticResource NullToImageConverter}}" LoadingPlaceholder= "LoaderImage" ErrorPlaceholder= "ErrorImage" CacheDuration= "50" RetryCount= "3" RetryDelay= "600" DownsampleToViewSize = "true" />
+                        <Label HorizontalOptions="Fill" VerticalOptions="Fill" TextColor="Black" XAlign="Center" YAlign="Center" Text="{Binding first_name}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </FlowListView:FlowListView.FlowColumnTemplate>
+        </FlowListView:FlowListView>
+    </StackLayout>
+</fresh:FreshBaseContentPage>

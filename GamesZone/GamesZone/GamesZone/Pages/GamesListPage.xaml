@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fresh:FreshBaseContentPage
+    xmlns:fresh="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+             xmlns:controls="clr-namespace:GamesZone.CommonControls"
+    x:Class="GamesZone.Pages.GamesListPage"
+    Title="Upcoming Games List">
+
+    <StackLayout>
+        <controls:SearchControl SearchCommand="{Binding SearchCommand}" PlaceholderText="Search..."  Text="{Binding Filter, Mode=TwoWay}" />
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+        <ListView ItemsSource="{Binding GamesList}" RowHeight="50" Margin="20" SelectedItem="{Binding SelectedGame}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Game Number: "/>
+                                <Label Text="{Binding game_number}" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Event Name: " />
+                                <Label Text="{Binding event_type.name}"  FontAttributes="Bold" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</fresh:FreshBaseContentPage>
