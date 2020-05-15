@@ -20,6 +20,7 @@
             tabbedNavigation.On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
             tabbedNavigation.AddTab<GamesListPageModel>("Upcoming Games", null);
             tabbedNavigation.AddTab<PlayersListPageModel>("Players", null);
+            tabbedNavigation.AddTab<PlayersCollectionPageModel>("Players Collection", null);
             tabbedNavigation.HeightRequest = 5;
             MainPage = tabbedNavigation;
         }

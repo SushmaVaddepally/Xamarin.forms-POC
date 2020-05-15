@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fresh:FreshBaseContentPage
+    xmlns:fresh="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="clr-namespace:GamesZone.CommonControls"
+    x:Class="GamesZone.Pages.PlayersCollectionPage"
+    xmlns:converters="clr-namespace:GamesZone.Converters">
+
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <converters:NullToImageConverter x:Key="NullToImageConverter" />
+            </ResourceDictionary>
+        </ContentPage.Resources>
+    <StackLayout>
+        <controls:SearchControl SearchCommand="{Binding SearchCommand}" PlaceholderText="Search..."  Text="{Binding Filter, Mode=TwoWay}" />
+        <CollectionView ItemsSource="{Binding PlayersList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.RowSpan="2" Source="{Binding image_url, Converter={StaticResource NullToImageConverter}}" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
+                        <StackLayout Orientation="Horizontal" Grid.Column="1">
+                            <Label Text="CFL Central Id: " FontAttributes="Bold" />
+                            <Label Text="{Binding cfl_central_id}" FontAttributes="Bold" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                            <Label Text="Name: " FontAttributes="Italic" VerticalOptions="End" />
+                            <Label  Text="{Binding first_name}" FontAttributes="Italic" VerticalOptions="End" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</fresh:FreshBaseContentPage>
